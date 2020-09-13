@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'course.apps.CourseConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -150,8 +151,18 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'utils.authentication.Authtication',
     ],
+    # 'UNAUTHENTICATED_USER': lambda :"匿名用户",
+    # 'UNAUTHENTICATED_USER': None,
+    # 'UNAUTHENTICATED_TOKEN': None,
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
+        'utils.permissions.MyPermission',
     ],
+    'DEFAULT_THROTTLE_CLASSES': ['utils.throttle.UserThrottle',],
+    'DEFAULT_THROTTLE_RATES': {
+        "cplatform": '3/m',
+        "cplatformUser": '10/m',
+    },
 }

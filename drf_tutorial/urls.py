@@ -29,5 +29,5 @@ urlpatterns = [
     path('schema/', schema_view),
     path('docs/', include_docs_urls(title="DRF API文档", description="接口详情描述")),
     path('course/', include('course.urls')),
-
+    path('api/', include('api.urls')),
 ]
